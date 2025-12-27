@@ -7,8 +7,9 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, FSInputFil
 from openpyxl import Workbook
 import os
 
-BOT_TOKEN = os.getenv("7966503499:AAHlh6Y4KwsQOdUc13MAMOIzJq9OuyGFEjI")
-ADMIN_ID = int(os.getenv("6140962854", "0"))
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_ID = int(os.getenv("ADMIN_ID", "0"))
+
 
 if not BOT_TOKEN:
     raise ValueError("❌ BOT_TOKEN topilmadi")
