@@ -1,22 +1,18 @@
 import asyncio
 import logging
-import os
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
 from openpyxl import Workbook
-
+import os
 # ================== SOZLAMALAR ==================
-TOKEN = "7966503499:AAHlh6Y4KwsQOdUc13MAMOIzJq9OuyGFEjI"
-ADMIN_ID = 6140962854
-
-if not TOKEN:
-    raise ValueError("❌ TOKEN topilmadi. Railway Variables ni tekshiring")
+BOT_TOKEN = "7966503499:AAHlh6Y4KwsQOdUc13MAMOIzJq9OuyGFEjI"
+ADMIN_ID = 6140962854  # @userinfobot orqali tekshirilgan
 
 logging.basicConfig(level=logging.INFO)
 
-bot = Bot(token=TOKEN)
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 applications = []
@@ -78,7 +74,7 @@ async def start(message: types.Message):
         reply_markup=filial_keyboard()
     )
 
-# ================== EXCEL (ADMIN) ==================
+# ================== EXCEL (MUHIM: TEPADA) ==================
 @dp.message(Command("excel"))
 async def export_excel(message: types.Message):
     if message.chat.id != ADMIN_ID:
@@ -124,7 +120,7 @@ async def filial_chosen(callback: types.CallbackQuery):
     await bot.send_message(chat_id, steps[0])
     await callback.answer()
 
-# ================== FORMA ==================
+# ================== FORMA (ENG OXIRDA) ==================
 @dp.message()
 async def form_handler(message: types.Message):
     if message.text.startswith("/"):
@@ -136,6 +132,7 @@ async def form_handler(message: types.Message):
         return
 
     step = user_step[chat_id]
+
     user_data[chat_id][keys[step]] = message.text
     step += 1
 
