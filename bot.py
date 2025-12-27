@@ -6,9 +6,13 @@ from aiogram.filters import Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
 from openpyxl import Workbook
 import os
-# ================== SOZLAMALAR ==================
-BOT_TOKEN = "7966503499:AAHlh6Y4KwsQOdUc13MAMOIzJq9OuyGFEjI"
-ADMIN_ID = 6140962854  # @userinfobot orqali tekshirilgan
+
+BOT_TOKEN = os.getenv("7966503499:AAHlh6Y4KwsQOdUc13MAMOIzJq9OuyGFEjI")
+ADMIN_ID = int(os.getenv("6140962854", "0"))
+
+if not BOT_TOKEN:
+    raise ValueError("❌ BOT_TOKEN topilmadi")
+
 
 logging.basicConfig(level=logging.INFO)
 
